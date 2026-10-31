@@ -1,0 +1,60 @@
+{
+  "openrouter": {
+    "base_url": "https://openrouter.ai/api/v1",
+    "api_key_env": "OPENROUTER_API_KEY",
+    "timeout_seconds": 120,
+    "max_retries": 3,
+    "app_title": "Adobe Stock AI Reviewer",
+    "app_referer": null
+  },
+  "pipeline": {
+    "mode": "single",
+    "agents": [
+      {
+        "name": "adobe_reviewer",
+        "model": "google/gemini-2.5-pro",
+        "prompt": "v1_reviewer",
+        "temperature": 0.1,
+        "max_tokens": 4096,
+        "response_format": "json_object"
+      }
+    ]
+  },
+  "thresholds": {
+    "ready": 90,
+    "needs_editing": 75,
+    "min_confidence": 0.6
+  },
+  "report_placement": "both",
+  "image": {
+    "max_side_px": 2048,
+    "upload_jpeg_quality": 90,
+    "extensions": [".jpg", ".jpeg", ".png", ".webp"],
+    "min_megapixels": 4.0,
+    "max_megapixels": 100.0,
+    "reject_below_min_resolution": true
+  },
+  "watcher": {
+    "poll_interval_seconds": 2.0,
+    "stable_wait_seconds": 2.0,
+    "process_existing_on_start": true,
+    "use_watchdog": true,
+    "failure_retry_cooldown_seconds": 300
+  },
+  "paths": {
+    "incoming": "images/Incoming",
+    "needs_editing": "images/Needs_Editing",
+    "ready_to_upload": "images/Ready_To_Upload",
+    "rejected": "images/Rejected",
+    "reports_json": "reports/json",
+    "reports_txt": "reports/txt",
+    "logs": "logs",
+    "prompts": "prompts"
+  },
+  "logging": {
+    "level": "INFO",
+    "file_name": "reviewer.log",
+    "max_bytes": 5242880,
+    "backup_count": 5
+  }
+}

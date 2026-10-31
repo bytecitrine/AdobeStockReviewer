@@ -1,0 +1,33 @@
+### Your data: never commit these ###
+config/.env
+images/*/*
+!images/*/.gitkeep
+reports/json/*
+reports/txt/*
+!reports/*/.gitkeep
+logs/*
+!logs/.gitkeep
+
+### Python ###
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.log
+
+### JetBrains ###
+.idea/
+*.iml
+
+### Windows ###
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
